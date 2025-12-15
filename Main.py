@@ -65,6 +65,15 @@ def elmozdulas(path: str) -> str:
 
     return ", ".join(eredmeny)
 
+def Karifa(magassag):
+    for i in range(magassag):
+        szokoz = magassag - i - 1
+        csillag = 2 * i + 1
+        print(' ' * szokoz + '*' * csillag)
+
+    for _ in range(2):
+        print(' ' * (magassag - 2) + "|||")
+
 
 class Elmozdulas(unittest.TestCase):
     def test_JJFBFFFFFFBBBL(self):
@@ -95,4 +104,6 @@ class ArmstrongTest(unittest.TestCase):
         self.assertFalse(armstrong_szam(1999))
 
 if __name__ == "__main__":
+    print("Kérem adja meg milyen magas legyen a karácsonyfa: ", end='')
+    Karifa(int(input()))
     unittest.main()
