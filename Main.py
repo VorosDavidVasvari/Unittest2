@@ -25,10 +25,23 @@ def jelszo_erosseg(passwd: str) -> int:
 
     return strength
 
+def maganhangzot_torol(txt: str) -> str:
+    newTxt: str = ""
+    maganhangzok = "aeiouáéíóöőúüű"
+
+    for c in txt:
+        if c.lower() not in maganhangzok: newTxt += c
+
+    return newTxt
+
+class Maganhangzok(unittest.TestCase):
+    def test_1(self):
+        self.assertEqual(maganhangzot_torol("Iden Java szigeten voltunk nyaralni. Nem is tudtam, hogy elneveztek egy helyet egy programozasi nyelvrol."), "dn Jv szgtn vltnk nyrln. Nm s tdtm, hgy lnvztk gy hlyt gy prgrmzs nylvrl.")
+
 class Jelszoerosseg(unittest.TestCase):
     def test_hazi_macska_4_life(self):
         self.assertEqual(jelszo_erosseg("hazi_macska_4_life"), 10)
-    def test_8208_true(self):
+    def test_ez1feltorhetetlenjelszo(self):
         self.assertEqual(jelszo_erosseg("ez1feltorhetetlenjelszo"), 0)
 
 class ArmstrongTest(unittest.TestCase):
