@@ -104,6 +104,8 @@ class ArmstrongTest(unittest.TestCase):
         self.assertFalse(armstrong_szam(1999))
 
 if __name__ == "__main__":
+    """
     print("Kérem adja meg milyen magas legyen a karácsonyfa: ", end='')
     Karifa(int(input()))
+    """
     unittest.main()
