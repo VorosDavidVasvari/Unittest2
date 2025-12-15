@@ -9,6 +9,28 @@ def armstrong_szam(num: int) -> bool:
 
     return num == sum
 
+def jelszo_erosseg(passwd: str) -> int:
+    if (len(passwd) == 0) or ("jelszo" in passwd) or ("123" in passwd): return 0
+
+    strength: int = 1
+
+    strengthChars = ".-_"
+
+    if len(passwd) > 5: strength += 1
+    if len(passwd) > 8: strength += 2
+
+    for c in strengthChars:
+        for ch in passwd:
+            if ch == c: strength += 2
+
+    return strength
+
+class Jelszoerosseg(unittest.TestCase):
+    def test_hazi_macska_4_life(self):
+        self.assertEqual(jelszo_erosseg("hazi_macska_4_life"), 10)
+    def test_8208_true(self):
+        self.assertEqual(jelszo_erosseg("ez1feltorhetetlenjelszo"), 0)
+
 class ArmstrongTest(unittest.TestCase):
     def test_153_true(self):
         self.assertTrue(armstrong_szam(153))
