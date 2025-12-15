@@ -34,6 +34,48 @@ def maganhangzot_torol(txt: str) -> str:
 
     return newTxt
 
+def elmozdulas(path: str) -> str:
+    x = 0
+    y = 0
+
+    for seps in path:
+        if seps == 'J':
+            x += 1
+        elif seps == 'B':
+            x -= 1
+        elif seps == 'F':
+            y += 1
+        elif seps == 'L':
+            y -= 1
+
+    if x == 0 and y == 0:
+        return "Nem mentunk sehova"
+
+    eredmeny = []
+
+    if x > 0:
+        eredmeny.append(f"{x} lepes jobbra")
+    elif x < 0:
+        eredmeny.append(f"{-x} lepes balra")
+
+    if y > 0:
+        eredmeny.append(f"{y} lepes fel")
+    elif y < 0:
+        eredmeny.append(f"{-y} lepes le")
+
+    return ", ".join(eredmeny)
+
+
+class Elmozdulas(unittest.TestCase):
+    def test_JJFBFFFFFFBBBL(self):
+        self.assertEqual(elmozdulas("JJFBFFFFFFBBBL"), "2 lepes balra, 6 lepes fel")
+    def test_FBLLLJLLJ(self):
+        self.assertEqual(elmozdulas("FBLLLJLLJ"), "1 lepes jobbra, 4 lepes le")
+    def test_FFF(self):
+        self.assertEqual(elmozdulas("FFF"), "3 lepes fel")
+    def test_FFLLBBJJ(self):
+        self.assertEqual(elmozdulas("FFLLBBJJ"), "Nem mentunk sehova")
+
 class Maganhangzok(unittest.TestCase):
     def test_1(self):
         self.assertEqual(maganhangzot_torol("Iden Java szigeten voltunk nyaralni. Nem is tudtam, hogy elneveztek egy helyet egy programozasi nyelvrol."), "dn Jv szgtn vltnk nyrln. Nm s tdtm, hgy lnvztk gy hlyt gy prgrmzs nylvrl.")
